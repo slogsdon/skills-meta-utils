@@ -40,7 +40,7 @@ Combine WHAT and WHY into one sentence. Examples:
 2. Write the `description` frontmatter: trigger phrases + "Do NOT use for..." guard.
 3. Write the principle line — one sentence, WHAT + WHY combined.
 4. Write 1–3 anti-patterns using the `**Don't:**` format; name the right alternative.
-5. Write steps — collapse any step that just restates what to do without showing how.
+5. Write steps — collapse any step that just restates what to do without showing how. If the skill depends on an external tool (Qwen, MCP), add a Fallback section.
 6. Identify `_lib/` candidates — any block you've seen in another skill.
 7. Count lines. If over target, extract one more thing or delete it.
 8. Save to `plugins/shane/<plugin>/skills/<name>/SKILL.md`.
