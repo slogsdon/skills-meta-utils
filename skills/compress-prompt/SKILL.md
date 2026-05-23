@@ -1,11 +1,11 @@
 ---
 name: compress-prompt
-description: Use when about to write a long prompt, include verbose text in context, or when any block of text needs to be made token-efficient before use. Delegates compression to a local Ollama model via the ollama-agent MCP.
+description: Use when about to write a long prompt, include verbose text in context, or when any block of text needs to be made token-efficient before use. Delegates compression to a local model via the LiteLLM proxy (ollama-agent MCP).
 ---
 
 # Skill: compress-prompt
 
-Compress verbose text into a token-efficient version using a local Ollama model (gemma4:e4b-mlx by default). Preserves meaning and intent; strips filler, redundancy, and padding.
+Compress verbose text into a token-efficient version using a local model via the LiteLLM proxy (default alias `fast-general` → gemma4:e4b-mlx). Preserves meaning and intent; strips filler, redundancy, and padding.
 
 ## When to Use
 

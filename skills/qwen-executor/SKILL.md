@@ -1,12 +1,12 @@
 ---
 name: qwen-executor
 description: |
-  Use this skill to delegate execution-level tasks to the local Ollama model (gemma4:e4b-mlx by default — the "fast general / vault" role from the roster). Best for: vault skill invocations (/ghost, /challenge, /emerge, /contradict, /drift, /ideas, /trace, /connect, /compound, /bloom, /stranger, /map, /level-up, /learned, /weekly-learnings, /backlinks), file search and summarization, drafting content, and any task where local execution is sufficient and API cost should be minimized. Do NOT use for tasks requiring real-time web access, complex multi-step tool use, or high-stakes decisions.
+  Use this skill to delegate execution-level tasks to a local model via the LiteLLM proxy (default alias `fast-general`, resolving to gemma4:e4b-mlx). Best for: vault skill invocations (/ghost, /challenge, /emerge, /contradict, /drift, /ideas, /trace, /connect, /compound, /bloom, /stranger, /map, /level-up, /learned, /weekly-learnings, /backlinks), file search and summarization, drafting content, and any task where local execution is sufficient and API cost should be minimized. Do NOT use for tasks requiring real-time web access, complex multi-step tool use, or high-stakes decisions.
 ---
 
-Delegate the current task to the local Ollama model (gemma4:e4b-mlx by default) using the stepped execution protocol below.
+Delegate the current task to the local model (via the LiteLLM proxy on port 4000, default alias `fast-general`) using the stepped execution protocol below.
 
-The model is configurable via the `OLLAMA_AGENT_MODEL` env var on the MCP server — see `~/Code/claude-code-config/models.json` for the full roster. The skill name retains "qwen" for historical continuity; the tool names (`qwen_start`/`qwen_continue`) are unchanged.
+The target alias is configurable via the `OLLAMA_AGENT_MODEL` env var on the MCP server — see `~/Code/claude-code-config/models.yaml` for the full roster and aliases. The skill name retains "qwen" for historical continuity; the tool names (`qwen_start`/`qwen_continue`) are unchanged.
 
 Do not attempt to answer the task yourself. Do not reason about it. Drive the loop immediately and return the final result verbatim.
 
