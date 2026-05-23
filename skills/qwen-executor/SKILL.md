@@ -1,19 +1,21 @@
 ---
 name: qwen-executor
 description: |
-  Use this skill to delegate execution-level tasks to Qwen running locally via LM Studio. Best for: vault skill invocations (/ghost, /challenge, /emerge, /contradict, /drift, /ideas, /trace, /connect, /compound, /bloom, /stranger, /map, /level-up, /learned, /weekly-learnings, /backlinks), file search and summarization, drafting content, and any task where local execution is sufficient and API cost should be minimized. Do NOT use for tasks requiring real-time web access, complex multi-step tool use, or high-stakes decisions.
+  Use this skill to delegate execution-level tasks to the local Ollama model (gemma4:e4b-mlx by default — the "fast general / vault" role from the roster). Best for: vault skill invocations (/ghost, /challenge, /emerge, /contradict, /drift, /ideas, /trace, /connect, /compound, /bloom, /stranger, /map, /level-up, /learned, /weekly-learnings, /backlinks), file search and summarization, drafting content, and any task where local execution is sufficient and API cost should be minimized. Do NOT use for tasks requiring real-time web access, complex multi-step tool use, or high-stakes decisions.
 ---
 
-Delegate the current task to Qwen running locally via LM Studio using the stepped execution protocol below.
+Delegate the current task to the local Ollama model (gemma4:e4b-mlx by default) using the stepped execution protocol below.
+
+The model is configurable via the `OLLAMA_AGENT_MODEL` env var on the MCP server — see `~/Code/claude-code-config/models.json` for the full roster. The skill name retains "qwen" for historical continuity; the tool names (`qwen_start`/`qwen_continue`) are unchanged.
 
 Do not attempt to answer the task yourself. Do not reason about it. Drive the loop immediately and return the final result verbatim.
 
 ## Tool Names
 
-The LM Studio MCP server is registered under different namespaces depending on context:
+The Ollama-agent MCP server is registered under different namespaces depending on context:
 
-- **Cowork (plugin context):** `mcp__plugin_shane-config_lmstudio-agent__qwen_start` / `mcp__plugin_shane-config_lmstudio-agent__qwen_continue`
-- **Claude Code (standalone):** `mcp__lmstudio-agent__qwen_start` / `mcp__lmstudio-agent__qwen_continue`
+- **Cowork (plugin context):** `mcp__plugin_shane-config_ollama-agent__qwen_start` / `mcp__plugin_shane-config_ollama-agent__qwen_continue`
+- **Claude Code (standalone):** `mcp__ollama-agent__qwen_start` / `mcp__ollama-agent__qwen_continue`
 
 Check which tools are available in your current session and use whichever namespace is present. If neither is available, use the fallback below.
 
@@ -30,7 +32,7 @@ Each `qwen_continue` call is a separate tool call — you will see each step as 
 
 ## Vault Access
 
-Qwen does **not** have access to MCP tools. For any task that requires reading or writing the Obsidian vault, the task description must include these instructions so Qwen knows how to interact with the vault:
+The local model does **not** have access to MCP tools. For any task that requires reading or writing the Obsidian vault, the task description must include these instructions so the model knows how to interact with the vault:
 
 ```
 Vault access (bash only — no MCP tools):
