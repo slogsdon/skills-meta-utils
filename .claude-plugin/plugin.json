@@ -1,7 +1,7 @@
 {
   "name": "skills-meta-utils",
-  "version": "0.1.0",
-  "description": "Meta-utility skills — compress-prompt for token-efficient prompt compression, qwen-executor for local LLM delegation via LM Studio.",
+  "version": "0.2.0",
+  "description": "Meta-utility skills — qwen-executor for local LLM delegation via LM Studio, write-a-skill for authoring new skills to convention.",
   "author": { "name": "Shane Logsdon" },
   "license": "MIT"
 }
